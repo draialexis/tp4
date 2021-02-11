@@ -147,12 +147,12 @@ int nbVictoires(int tab[N][N], int numEquipe, char domOuExt) {
     return nb;
 }
 
-int meilleureEquipeDomicile(int tab[N][N]) {
+int meilleureEquipe(int tab[N][N], char c) {
     int leadTeam = -1;
     int maxScore = -1;
 
     for (int i = 0; i < N; ++i) {
-        int victories = nbVictoires(tab, i, 'd');
+        int victories = nbVictoires(tab, i, c);
         if (maxScore <= victories) {
             maxScore = victories;
             leadTeam = i;
@@ -161,18 +161,12 @@ int meilleureEquipeDomicile(int tab[N][N]) {
     return leadTeam;
 }
 
-int meilleureEquipeExterieur(int tab[N][N]) {
-    int leadTeam = -1;
-    int maxScore = -1;
+int meilleureEquipeDomicile(int tab[N][N]) {
+    return meilleureEquipe(tab, 'd');
+}
 
-    for (int i = 0; i < N; ++i) {
-        int victories = nbVictoires(tab, i, 'e');
-        if (maxScore <= victories) {
-            maxScore = victories;
-            leadTeam = i;
-        }
-    }
-    return leadTeam;
+int meilleureEquipeExterieur(int tab[N][N]) {
+    return meilleureEquipe(tab, 'e');
 }
 
 int main(int argc, char *argv[]) {
